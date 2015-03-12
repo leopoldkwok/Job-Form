@@ -14,9 +14,6 @@
 	$message = '';
 	$cv_upload = '';
 
-
-
-
 	//validation
 
 	if(isset($_POST['submit'])) { // out put all the data if the user clicks on submit
@@ -41,17 +38,17 @@
 			$email = $_POST['email'];
 		}
 
-		if(!isset($_POST['phone_number']) || $_POST['phone_number'] === '') {
-			$ok = false;
-		}   else {
-			$phone_number = $_POST['phone_number'];
-		}
+		// if(!isset($_POST['phone_number']) || $_POST['phone_number'] === '') {
+		// 	$ok = false;
+		// }   else {
+		// 	$phone_number = $_POST['phone_number'];
+		// }
 
-		if(!isset($_POST['message']) || $_POST['message'] === '') {
-			$ok = false;
-		}   else {
-			$message = $_POST['message'];
-		}
+		// if(!isset($_POST['message']) || $_POST['message'] === '') {
+		// 	$ok = false;
+		// }   else {
+		// 	$message = $_POST['message'];
+		// }
 
 
 		if($ok) {
@@ -69,6 +66,8 @@
 			mysqli_query($db, $sql); // send to database
 			mysqli_close($db); //close session to free resources
 			echo '<p>Success! Your details was successfully added! Thank you for sending your details.</p>';
+
+	
 
 		}
 	}
