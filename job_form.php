@@ -14,19 +14,34 @@
 	$message = '';
 	$cv_upload = '';
 
+
+	$firstnameError ="";
+	$lastnameError="";
+	$emailError ="";
+	$phone_numberError="";
+	$messageError ="";
+	// $fileError ="";
+	$errors = 0;
+
+
+
 	//validation
 
-	if(isset($_POST['submit'])) { // out put all the data if the user clicks on submit
+	if(isset($_POST['submit'])) { // out put all the data if the user clicks on submit. Checking null values in message.
 		$ok = true;
 		
 		if(!isset($_POST['firstname']) || $_POST['firstname'] === '') {
 			$ok = false;
+			$firstnameError = "First Name is required";
+
 		} else {
 			$firstname = $_POST['firstname'];
 		}
 
 		if(!isset($_POST['lastname']) || $_POST['lastname'] === '') {
 			$ok = false;
+			$lastnameError="Last name is required";
+
 		} else {
 			$lastname = $_POST['lastname'];
 		}
@@ -34,6 +49,8 @@
 
 		if(!isset($_POST['email']) || $_POST['email'] === '') {
 			$ok = false;
+			$emailError = "Email is required";
+
 		}   else {
 			$email = $_POST['email'];
 		}
@@ -78,15 +95,18 @@
 	<form method="post" action="">
 	First Name:<br><input type="text" name="firstname" value="<?php
 		echo htmlspecialchars($firstname); // prefilled the form fields
-	?>"><br><br>
+	?>"><br>
+	<div class="error"><?php echo $firstnameError;?></div><br><br>
 
 	Last Name:<br><input type="text" name="lastname" value="<?php
 		echo htmlspecialchars($lastname); // prefilled the form fields
-	?>"><br><br>
+	?>"><br>
+	<div class="error"><?php echo $lastnameError;?></div><br><br><br>
 
 	Email:<br><input type="text" name="email" value="<?php
 		echo htmlspecialchars($email); // prefilled the form fields
-	?>"><br><br>
+	?>"><br>
+	<br><div class="error"><?php echo $emailError;?></div><br><br><br>
 
 	Phone Number:<br><input type="text" name="phone_number" value="<?php
 		echo htmlspecialchars($phone_number); // prefilled the form fields
