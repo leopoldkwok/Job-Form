@@ -39,6 +39,7 @@
 		} elseif (!preg_match("/^[a-zA-Z]*$/",$_POST['firstname'])) {
 			$ok = false;
 			$firstnameError = "Only letters and white space not allowed";
+		
 		} else {
 			$firstname = $_POST['firstname'];
 		}
@@ -68,17 +69,21 @@
 			$email = $_POST['email'];
 		}
 
-		// if(!isset($_POST['phone_number']) || $_POST['phone_number'] === '') {
-		// 	$ok = false;
-		// }   else {
-		// 	$phone_number = $_POST['phone_number'];
-		// }
 
-		// if(!isset($_POST['message']) || $_POST['message'] === '') {
+		if(!isset($_POST['phone_number']) || $_POST['phone_number'] === '') {
+			$ok = false;
+			$phone_numberError = "Phone number is required";
+
+
+		// } elseif ((preg_match("/[^0-9]/",'',$_POST['phone_number'])) && strlen($_POST['phone_number']) == 10) {
 		// 	$ok = false;
-		// }   else {
-		// 	$message = $_POST['message'];
-		// }
+		// 	$phone_numberError = "Invalid Phone Number";
+		
+		}   else {
+			$phone_number = $_POST['phone_number'];
+		}
+
+		$message = $_POST['message'];
 
 
 		if($ok) {
@@ -87,7 +92,7 @@
 			// add database code here
 			$db = mysqli_connect('localhost', 'root', '', 'job_form'); //connect to the database
 			$sql = sprintf("INSERT INTO form (firstname, lastname,  email,  phone_number, message) VALUES (
-				'%s','%s','%s','%s', '%s'
+				'%s','%s','%s','%s','%s'
 				)", mysqli_real_escape_string($db, $firstname),
 					mysqli_real_escape_string($db, $lastname),
 					mysqli_real_escape_string($db, $email),
@@ -123,9 +128,12 @@
 
 	Phone Number:<br><input type="text" name="phone_number" value="<?php
 		echo htmlspecialchars($phone_number); // prefilled the form fields
-	?>"><br><br>
+	?>"><br>
+	<div class="error"><?php echo $phone_numberError;?></div><br>
+<!-- 
+	<textarea name="message" val=""><?php echo $message; ?></textarea> -->
 
-	Message: <br><textarea name="message" rows="5" cols="40" "<?php
+	Message: <br><textarea name="message" val="" rows="5" cols="40" "<?php
 		echo htmlspecialchars($message); // prefilled the form fields
 	?>"></textarea>
 	<br><br>
