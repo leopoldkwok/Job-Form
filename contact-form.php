@@ -64,7 +64,13 @@ if($errors == 0){
 					<label>Email :</label>
 					<input class="input" type="text" name="email" value="<?php echo $email; ?>">
 					<div class="error"><?php echo $emailError;?></div>
-					
+					<label>Technologies :</label>
+					<div>
+					<input type="radio" name="technologies" value="PHP" <?php if (isset($technologies) && $technologies == "PHP") echo "checked"; ?> > PHP
+					<input type="radio" name="technologies" value="HTML" <?php if (isset($technologies) && $technologies == "HTML") echo "checked"; ?> > HTML
+					<input type="radio" name="technologies" value="PYTHON" <?php if (isset($technologies) && $technologies == "PYTHON") echo "checked"; ?> > Python
+					</div>
+					<div class="error"><?php echo $technologiesError;?></div>
 					<label>Message :</label>
 					<textarea name="message" val=""><?php echo $message; ?></textarea>
 					<div class="error"><?php echo $messageError;?></div>

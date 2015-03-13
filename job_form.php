@@ -27,7 +27,9 @@
 
 	//validation
 
-	if(isset($_POST['submit'])) { // out put all the data if the user clicks on submit. Checking null values in message.
+	//we first confirm whether the form has been submitted by checking if submit has been set. isset function in php checks if a variable is set and is not null.
+
+	if(isset($_POST['submit'])) { // output all the data if the user clicks on submit. Checking null values in message and validates the form
 		$ok = true;
 		
 		if(!isset($_POST['firstname']) || $_POST['firstname'] === '') {
@@ -51,7 +53,11 @@
 			$ok = false;
 			$emailError = "Email is required";
 
-		}   else {
+		}   elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+			$ok = false;
+			$emailError = "Email is not valid";
+
+		}	else {
 			$email = $_POST['email'];
 		}
 
