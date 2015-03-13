@@ -36,6 +36,9 @@
 			$ok = false;
 			$firstnameError = "First Name is required";
 
+		} elseif (!preg_match("/^[a-zA-Z]*$/",$_POST['firstname'])) {
+			$ok = false;
+			$firstnameError = "Only letters and white space not allowed";
 		} else {
 			$firstname = $_POST['firstname'];
 		}
@@ -43,6 +46,10 @@
 		if(!isset($_POST['lastname']) || $_POST['lastname'] === '') {
 			$ok = false;
 			$lastnameError="Last name is required";
+
+		} elseif (!preg_match("/^[a-zA-Z]*$/",$_POST['lastname'])) {
+			$ok = false;
+			$lastnameError = "Only letters and white space not allowed";
 
 		} else {
 			$lastname = $_POST['lastname'];
@@ -102,17 +109,17 @@
 	First Name:<br><input type="text" name="firstname" value="<?php
 		echo htmlspecialchars($firstname); // prefilled the form fields
 	?>"><br>
-	<div class="error"><?php echo $firstnameError;?></div><br><br>
+	<div class="error"><?php echo $firstnameError;?></div><br>
 
 	Last Name:<br><input type="text" name="lastname" value="<?php
 		echo htmlspecialchars($lastname); // prefilled the form fields
 	?>"><br>
-	<div class="error"><?php echo $lastnameError;?></div><br><br><br>
+	<div class="error"><?php echo $lastnameError;?></div><br>
 
 	Email:<br><input type="text" name="email" value="<?php
 		echo htmlspecialchars($email); // prefilled the form fields
 	?>"><br>
-	<br><div class="error"><?php echo $emailError;?></div><br><br><br>
+	<div class="error"><?php echo $emailError;?></div><br>
 
 	Phone Number:<br><input type="text" name="phone_number" value="<?php
 		echo htmlspecialchars($phone_number); // prefilled the form fields
